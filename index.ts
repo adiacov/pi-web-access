@@ -2246,7 +2246,7 @@ export default function (pi: ExtensionAPI) {
 			if (!isBrowserCookieAccessAllowed()) {
 				pi.sendMessage({
 					customType: "google-account",
-					content: [{ type: "text", text: "Gemini Web browser cookie access is disabled. Set allowBrowserCookies: true in ~/.pi/web-search.json to enable it." }],
+					content: [{ type: "text", text: "Gemini Web browser cookie access is disabled in this build." }],
 					display: "tool",
 					details: { available: false, cookieAccessAllowed: false },
 				}, { triggerTurn: true, deliverAs: "followUp" });

@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+- Disabled Gemini Web browser-cookie access unconditionally in this fork; `allowBrowserCookies`, `PI_ALLOW_BROWSER_COOKIES`, and `FEYNMAN_ALLOW_BROWSER_COOKIES` are ignored.
+
 ## [0.10.7] - 2026-05-02
 
 ### Added

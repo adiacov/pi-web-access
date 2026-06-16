@@ -20,8 +20,8 @@ function runCookieAccessCheck(home, extraEnv = {}) {
 	});
 }
 
-test("browser cookie access is disabled unless explicitly allowed", async () => {
-	const home = await mkdtemp(join(tmpdir(), "pi-web-access-cookie-opt-in-"));
+test("browser cookie access is always disabled", async () => {
+	const home = await mkdtemp(join(tmpdir(), "pi-web-access-cookie-disabled-"));
 
 	let child = runCookieAccessCheck(home);
 	assert.equal(child.status, 0, child.stderr);
@@ -32,10 +32,10 @@ test("browser cookie access is disabled unless explicitly allowed", async () => 
 
 	child = runCookieAccessCheck(home);
 	assert.equal(child.status, 0, child.stderr);
-	assert.equal(child.stdout.trim(), "true");
+	assert.equal(child.stdout.trim(), "false");
 
 	const envHome = await mkdtemp(join(tmpdir(), "pi-web-access-cookie-env-"));
-	child = runCookieAccessCheck(envHome, { PI_ALLOW_BROWSER_COOKIES: "1" });
+	child = runCookieAccessCheck(envHome, { PI_ALLOW_BROWSER_COOKIES: "1", FEYNMAN_ALLOW_BROWSER_COOKIES: "1" });
 	assert.equal(child.status, 0, child.stderr);
-	assert.equal(child.stdout.trim(), "true");
+	assert.equal(child.stdout.trim(), "false");
 });
